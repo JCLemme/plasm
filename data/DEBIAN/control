@@ -1,5 +1,5 @@
-Package: spasm
+Package: plasm
 Version: 4.0b
 Architecture: amd64
 Maintainer: John C Lemme <jclemme@proportionallabs.com>
-Description: spasm is a cross-assembler for the epRISC architecture.
+Description: plasm is a rapidly retargetable assembler for hobbyist systems.
