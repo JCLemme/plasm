@@ -1,0 +1,109 @@
+{   
+    "name": "epRISC v5",
+    "author": "John C Lemme",
+    "contact": "jclemme@proportionallabs.com",
+    
+    "include_path": "/usr/share/lib",
+    "output_pad": false,
+    
+    "word_length": 32,
+    "endianness": "big",
+    
+    "enums": 
+    [
+        {
+            "name": "register",
+            "values":
+            [
+                {"ip":  0}, {"sp":  1}, {"cs":  2}, {"gl":  3},
+                {"ww":  0}, {"wx":  1}, {"wy":  2}, {"wz":  3},
+                {"xw":  4}, {"xx":  5}, {"xy":  6}, {"xz":  7},
+                {"yw":  8}, {"yx":  9}, {"yy": 10}, {"yz": 11},
+                {"zw": 12}, {"zx": 13}, {"zy": 14}, {"zz": 15},
+            ]
+        },
+        
+        {
+            "name": "branch_condition",
+            "values":
+            [
+                {"alc":  0}, {"always": 0}, 
+                {"eql":  1}, {"equal": 1}, 
+                {"neq":  2}, {"notequal": 2}, 
+                {"hos":  3}, {"higherorsame": 3}, 
+                {"low":  4}, {"lower": 4}, 
+                {"neg":  5}, {"negative": 5}, 
+                {"poz":  6}, {"positiveorzero": 6}, 
+                {"ovf":  7}, {"overflow": 7}, 
+                {"nov":  8}, {"nooverflow": 8}, 
+                {"hig":  9}, {"higher": 9}, 
+                {"los": 10}, {"lowerorsame": 10}, 
+                {"get": 11}, {"greaterorequalto": 11}, 
+                {"let": 12}, {"lessorequalto": 12}, 
+                {"grt": 13}, {"greaterthan": 13}, 
+                {"lst": 14}, {"lessthan": 14}, 
+                {"nvr": 15}, {"never": 15}, 
+            ]
+        },
+    ],
+ 
+    "instructions":
+    [
+        {
+            "name": "brch.o",
+            "enums":
+            [
+                {
+                    "name": "branch_modifier",
+                    "values":
+                    [
+                        {"none": 0},
+                        {"return": 2},
+                        {"savelink": 4},
+                        {"savestack": 5},
+                        {"loadlink": 6},
+                        {"loadstack": 7}
+                    ]
+                }
+            ],
+            
+            "arguments":
+            [
+                {"type": "const", "data": "1"},
+                {"type": "enum", "width": 3, "id": "l", "enum": "branch_modifier", "default": "none"},
+                {"type": "enum", "width": 4, "id": "c", "enum": "branch_condition", "default": "always"},
+                {"type": "enum", "width": 4, "id": "r", "enum": "register", "default": "ip"},
+                {"type": "value", "width": 20, "id": "o", "default": 0},
+            ]
+        },
+        
+        {
+            "name": "brch.a",
+            "enums":
+            [
+                {
+                    "name": "branch_modifier",
+                    "values":
+                    [
+                        {"none": 0},
+                        {"return": 2},
+                        {"savelink": 4},
+                        {"savestack": 5},
+                        {"loadlink": 6},
+                        {"loadstack": 7}
+                    ]
+                }
+            ],
+            
+            "arguments":
+            [
+                {"type": "const", "data": "1"},
+                {"type": "enum", "width": 3, "id": "l", "enum": "branch_modifier", "default": "none"},
+                {"type": "enum", "width": 4, "id": "c", "enum": "branch_condition", "default": "always"},
+                {"type": "enum", "width": 4, "id": "r", "enum": "register", "default": "ip"},
+                {"type": "address", "width": 20, "id": "a"},
+            ]
+        }
+    ]
+    
+}
